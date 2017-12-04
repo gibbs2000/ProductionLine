@@ -8,12 +8,16 @@ public class Disk implements Comparable<Disk> {
 
 	@Override
 	public int compareTo(Disk o) {
-		return this.radius - o.radius;
+		return (int) Math.signum(this.getRadius() - o.getRadius());
 	}
 
 	@Override
 	public String toString() {
 		return "Disk of size " + radius;
 
+	}
+
+	public int getRadius() {
+		return radius;
 	}
 }
