@@ -10,4 +10,15 @@ public class Tower extends Stack<Disk> {
 		isRegular = true;
 
 	}
+
+	@Override
+	public String toString() {
+		String s = "\nTower:\n";
+		for (Disk d : this) {
+			s +=( d + "\n");
+		}
+		s+="\n";
+
+		return s;
+	}
 }

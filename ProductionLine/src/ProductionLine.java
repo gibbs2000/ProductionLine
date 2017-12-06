@@ -25,13 +25,14 @@ public class ProductionLine {
 
 	public void process() {
 		while (!input.isEmpty()) {
-			Disk temp = input.pop();
-			mrRobot.push(temp);
-			while (temp.compareTo(input.peek()) < 0) {
-				mrRobot.add(input.pop());
+			Disk base = input.remove();
+			mrRobot.push(base);
+			while (!input.isEmpty()&&(input.peek().compareTo(mrRobot.peek()) <  0)) {
+				mrRobot.push(input.pop());
 			}
 			unloadRobot();
 		}
+		unloadRobot();
 	}
 
 	public Tower removeTower() {
@@ -46,9 +47,9 @@ public class ProductionLine {
 	public static void main(String[] args) {
 
 		ProductionLine tester = new ProductionLine();
-		Disk[] disks = { new Disk(1), new Disk(3), new Disk(5), new Disk(3), new Disk(7), new Disk(1) };
-		for (Disk d : disks) {
-			tester.addDisk(d);
+		Disk[] disks = { new Disk(1), new Disk(3), new Disk(5), new Disk(3), new Disk(7), new Disk(1), new Disk(10), new Disk(13) };
+		for (int i = 0; i < disks.length; i++) {
+			tester.addDisk(disks[i]);
 		}
 
 		System.out.println(tester);

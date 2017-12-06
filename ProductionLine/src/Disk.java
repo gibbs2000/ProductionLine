@@ -13,7 +13,11 @@ public class Disk implements Comparable<Disk> {
 
 	@Override
 	public String toString() {
-		return "Disk of size " + radius;
+		String s = "";
+		for (int i = 0; i < radius; i++) {
+			s += "=";
+		}
+		return s;
 
 	}
 
