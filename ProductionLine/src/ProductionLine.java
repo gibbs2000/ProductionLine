@@ -24,12 +24,14 @@ public class ProductionLine {
 	}
 
 	public void process() {
+//		System.out.println("processing" + input);
 		while (!input.isEmpty()) {
 			mrRobot.push(input.remove());
-			while (!input.isEmpty()&&(input.peek().compareTo(mrRobot.peek()) <=  0)) {
-				mrRobot.push(input.pop());
-			}
-			unloadRobot();
+//			System.out.println("Robot " + mrRobot.peek());
+			 while (!input.isEmpty()&&(input.peek().compareTo(mrRobot.peek()) >= 0)) {
+			 mrRobot.push(input.remove());
+			 }
+			 unloadRobot();
 		}
 		unloadRobot();
 	}
@@ -46,12 +48,17 @@ public class ProductionLine {
 	public static void main(String[] args) {
 
 		ProductionLine tester = new ProductionLine();
-		for (int i = 0; i < 5; i++) {
-			tester.addDisk(new Disk());
+		Disk[] disks = { new Disk(3), new Disk(5), new Disk(2), new Disk(4) };
+		for (Disk d : disks) {
+			tester.addDisk(d);
 		}
+		// for (int i = 0; i < 5; i++) {
+		// tester.addDisk(new Disk());
+		// }
 
 		System.out.println(tester);
 		tester.process();
+		System.out.println("Processeing complete");
 		System.out.println(tester);
 
 	}
