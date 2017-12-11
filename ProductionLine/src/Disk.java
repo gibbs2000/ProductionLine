@@ -6,6 +6,10 @@ public class Disk implements Comparable<Disk> {
 		radius = r;
 	}
 
+	public Disk() {
+		radius = (int)(Math.random()*5)+1;
+	}
+	
 	@Override
 	public int compareTo(Disk o) {
 		return (int) Math.signum(this.getRadius() - o.getRadius());

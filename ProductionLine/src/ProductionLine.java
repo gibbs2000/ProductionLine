@@ -25,9 +25,8 @@ public class ProductionLine {
 
 	public void process() {
 		while (!input.isEmpty()) {
-			Disk base = input.remove();
-			mrRobot.push(base);
-			while (!input.isEmpty()&&(input.peek().compareTo(mrRobot.peek()) <  0)) {
+			mrRobot.push(input.remove());
+			while (!input.isEmpty()&&(input.peek().compareTo(mrRobot.peek()) <=  0)) {
 				mrRobot.push(input.pop());
 			}
 			unloadRobot();
@@ -47,9 +46,8 @@ public class ProductionLine {
 	public static void main(String[] args) {
 
 		ProductionLine tester = new ProductionLine();
-		Disk[] disks = { new Disk(1), new Disk(3), new Disk(5), new Disk(3), new Disk(7), new Disk(1), new Disk(10), new Disk(13) };
-		for (int i = 0; i < disks.length; i++) {
-			tester.addDisk(disks[i]);
+		for (int i = 0; i < 5; i++) {
+			tester.addDisk(new Disk());
 		}
 
 		System.out.println(tester);
