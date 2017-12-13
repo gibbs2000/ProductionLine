@@ -36,13 +36,13 @@ public class ProductionLine {
 	 * Inverts the "robot arm" and adds its product to the output queue
 	 */
 	public void unloadRobot() {
-		if (!mrRobot.isEmpty()) {
-			Tower nextOut = new Tower();
-			for (int i = 0; i < mrRobot.size(); i++) {
-				nextOut.push(mrRobot.pop());
-			}
-			output.add(nextOut);
+		Tower nextOut = new Tower();
+		while (!mrRobot.isEmpty()) {
+			nextOut.add(mrRobot.pop());
+
 		}
+		nextOut.flip();
+		output.add(nextOut);
 	}
 
 	/**
@@ -50,15 +50,14 @@ public class ProductionLine {
 	 * the Disks into appropriately sized towers
 	 */
 	public void process() {
-		while (input.peek() != null) {
+		if (!input.isEmpty())
 			mrRobot.push(input.remove());
-			System.out.println(mrRobot.peek());
-			if (input.peek() != null && input.peek().compareTo(mrRobot.peek()) <= 0) {
+		while (!input.isEmpty()) {
+			if (input.peek().compareTo(mrRobot.peek()) < 0)
 				unloadRobot();
-			}
+			mrRobot.push(input.remove());
 
 		}
-
 		unloadRobot();
 
 	}
@@ -77,17 +76,4 @@ public class ProductionLine {
 		return "Input: " + input + "\n\n" + "Output: " + output + "\n\n" + "Robot Arm: " + mrRobot;
 	}
 
-	public static void main(String[] args) {
-
-		ProductionLine tester = new ProductionLine();
-		Disk[] disks = { new Disk(3), new Disk(5), new Disk(3), new Disk(7), new Disk(10) };
-		for (int i = 0; i < disks.length; i++) {
-			tester.addDisk(disks[i]);
-		}
-
-		System.out.println(tester);
-		tester.process();
-		System.out.println(tester);
-
-	}
 }

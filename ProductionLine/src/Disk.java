@@ -14,9 +14,12 @@ public class Disk implements Comparable<Disk> {
 	 *            the radius of the Disk to be created
 	 */
 	public Disk(int r) {
-		radius = Math.abs(r);
+		if (r <= 0)
+			throw new IllegalArgumentException("Radius is too small");
+		radius = r;
+
 		// Uses the absolute value of the radius to ensure that a "real" Disk is
-		// created, not an impossible inverted Disk
+		// created, not an impossible inverted Disk or a Disk of size 0
 	}
 
 	/**
