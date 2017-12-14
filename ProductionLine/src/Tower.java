@@ -9,7 +9,9 @@ import java.util.Stack;
  */
 @SuppressWarnings("serial")
 public class Tower extends Stack<Disk> {
-
+	/**
+	 * Default constructor for Tower, creates an empty Tower
+	 */
 	public Tower() {
 		super();
 
