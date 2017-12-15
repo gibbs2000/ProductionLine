@@ -1,5 +1,13 @@
-
+/**
+ * Tests the ProductionLine class and related classes
+ * 
+ * @author Sean Gibbons
+ *
+ */
 public class ProductionLineTester {
+	/**
+	 * Tests the Disk class
+	 */
 	public static void diskTest() {
 		System.out.println("TESTING THE DISK CLASS");
 		Disk[] d = { new Disk(5), new Disk(5), new Disk(4), new Disk() };
@@ -9,6 +17,9 @@ public class ProductionLineTester {
 
 	}
 
+	/**
+	 * Tests the Tower class
+	 */
 	public static void towerTest() {
 		System.out.println("TESTING THE TOWER CLASS");
 
@@ -19,6 +30,9 @@ public class ProductionLineTester {
 		System.out.println(t);
 	}
 
+	/**
+	 * Tests the ProductionLine class
+	 */
 	public static void productionLineTest() {
 		System.out.println("TESTING THE PRODUCTIONLINE CLASS");
 
@@ -49,6 +63,59 @@ public class ProductionLineTester {
 		System.out.println(donuts);
 		donuts.process();
 		System.out.println(donuts);
+
+		// Break for output file
+		System.out.println();
+		System.out.println("******************");
+		System.out.println();
+
+		// Tests with an empty Array of Disks
+		ProductionLine tires = new ProductionLine();
+		Disk[] goodyear = new Disk[5];
+		for (int i = 0; i < goodyear.length; i++) {
+			donuts.addDisk(goodyear[i]);
+		}
+
+		// Tests with Disks of a random radius
+		System.out.println("TESTING WITH AN EMPTY ARRAY");
+		System.out.println(tires);
+		donuts.process();
+		System.out.println(tires);
+
+		// Break for output file
+		System.out.println();
+		System.out.println("******************");
+		System.out.println();
+
+		// Tests with Disks in one big Tower
+		ProductionLine bagels = new ProductionLine();
+		for (int i = 5; i < 10; i++) {
+			bagels.addDisk(new Disk(i));
+		}
+
+		// Tests with Disks that are in order to make one big Tower
+		System.out.println("TESTING WITH DISKS THAT ARE IN ORDER TO MAKE ONE BIG TOWER");
+		System.out.println(bagels);
+		bagels.process();
+		System.out.println(bagels);
+
+		// Break for output file
+		System.out.println();
+		System.out.println("******************");
+		System.out.println();
+
+		// Tests with Disks that are all the same
+		ProductionLine cookies = new ProductionLine();
+		for (int i = 0; i < 5; i++) {
+			cookies.addDisk(new Disk(3));
+		}
+
+		// Tests with Disks that are all the same
+		System.out.println("TESTING WITH DISKS THAT ARE ALL THE SAME");
+		System.out.println(cookies);
+		cookies.process();
+		System.out.println(cookies);
+
 	}
 
 	public static void main(String[] args) {

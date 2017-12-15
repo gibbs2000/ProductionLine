@@ -29,7 +29,13 @@ public class ProductionLine {
 	 *            the Disk to be added to the input queue
 	 */
 	public void addDisk(Disk d) {
-		input.add(d);
+		try {
+			input.add(d);
+
+		} catch (NullPointerException nullDisk) {
+			System.out.println("Cannot ask null disk");
+		}
+
 	}
 
 	/**
@@ -50,9 +56,10 @@ public class ProductionLine {
 	 * the Disks into appropriately sized towers
 	 */
 	public void process() {
+		System.out.println("Processing");
 		if (!input.isEmpty())
 			mrRobot.push(input.remove());
-		while (!input.isEmpty()) {
+		while (!input.isEmpty() && mrRobot.peek() != null) {
 			if (input.peek().compareTo(mrRobot.peek()) < 0)
 				unloadRobot();
 			mrRobot.push(input.remove());
